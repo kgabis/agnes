@@ -66,6 +66,17 @@ Since I cannot add roms to this project they must be downloaded manually. Please
 * More mappers.
 * Being able to access CPU and PPU state using API.
 
+## Splitting and joining
+agnes.h can be split into separate files by running ```utils/split.py```:
+```bash
+utils/split.py --input agnes.h --output-path src
+```
+
+It can be joined back into a single file with ```utils/join.py```:
+```bash
+utils/join.py --template utils/agnes.h.templ --path src --output agnes.h --VERSION 0.1.0
+```
+
 ## Contributing
 I will always merge *working* bug fixes. However, if you want to add something new to the API, please create an "issue" on github for this first so we can discuss if it should end up in the library before you start implementing it.  
 

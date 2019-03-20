@@ -56,7 +56,7 @@ It behaves like most single header libraries - you have to declare AGNES_IMPLEME
 ```
 
 ## Testing
-Run ```tests/run_tests.sh ROM_DIRECTORY``` to compile and run tests.
+Run ```run_tests.sh ROM_DIRECTORY``` (in tests directory) to compile and run tests.
 
 Since I cannot add roms to this project they must be downloaded manually. Please look at contents of [examples/recs.tar.gz](http://github.com/kgabis/agnes/tree/master/examples/recs.tar.gz) for names of roms that are required to run tests. Emulator testing roms (such as nestest.nes or official_only.nes) can be obtained from [here](https://wiki.nesdev.com/w/index.php/Emulator_tests). If you want to update add a recording or update an existing one run ```recorder``` (located in tests dir).
 

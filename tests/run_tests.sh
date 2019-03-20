@@ -4,6 +4,13 @@
 
 trap "exit" INT
 
+if [ "$#" -ne 1 ]; then
+    echo "Usage: run_tests.sh ROM_DIRECTORY"
+	exit 1
+fi
+
+ROM_DIR=$1
+
 TESTS_OK=true
 
 printf "Compiling player\n"
@@ -47,11 +54,11 @@ if [ "${PLAYER_COMPILED}" == true ]; then
 	else
 		echo "	OK"
 	fi
-	
+
 	START=$(date +%s)
 
 	for f in recs/*.json; do 
-		./player --recordings "$f" --roms-dir roms --mode verify --no-vsync --frame-skip 10 --no-render
+		./player --recordings "$f" --roms-dir "${ROM_DIR}" --mode verify --no-vsync --frame-skip 10 --no-render
 		if [ ${?} != "0" ]; then
 			TESTS_OK=false
 		fi

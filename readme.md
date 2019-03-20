@@ -37,6 +37,8 @@ Full and working examples can be found in [examples directory](http://github.com
     <img src="screens/smb3.png" alt="Super Mario Bros 3" width="256"/>
     <img src="screens/kirby.png" alt="Kirby's Adventure" width="256"/>
     <img src="screens/radracer2.png" alt="Rad Racer II" width="256"/> 
+    <img src="screens/contra.png" alt="Contra" width="256"/> 
+    <img src="screens/dk.png" alt="Donkey Kong" width="256"/> 
 </p>
 
 ## Installation

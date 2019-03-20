@@ -58,7 +58,7 @@ It behaves like most single header libraries - you have to declare AGNES_IMPLEME
 ## Testing
 Run ```tests/run_tests.sh ROM_DIRECTORY``` to compile and run tests.
 
-Since I cannot add roms to this project they must be downloaded manually. Please look at contents of (examples/recs.tar.gz)[http://github.com/kgabis/agnes/tree/master/examples/recs.tar.gz] for names of roms that are required to run tests. Emulator testing roms (such as nestest.nes or official_only.nes) can be obtained from (here)[https://wiki.nesdev.com/w/index.php/Emulator_tests]. If you want to update add a recording or update an existing one run ```recorder``` (located in tests dir).
+Since I cannot add roms to this project they must be downloaded manually. Please look at contents of [examples/recs.tar.gz](http://github.com/kgabis/agnes/tree/master/examples/recs.tar.gz) for names of roms that are required to run tests. Emulator testing roms (such as nestest.nes or official_only.nes) can be obtained from [here](https://wiki.nesdev.com/w/index.php/Emulator_tests). If you want to update add a recording or update an existing one run ```recorder``` (located in tests dir).
 
 ## TODO
 * APU emulation.
@@ -70,7 +70,7 @@ Since I cannot add roms to this project they must be downloaded manually. Please
 I will always merge *working* bug fixes. However, if you want to add something new to the API, please create an "issue" on github for this first so we can discuss if it should end up in the library before you start implementing it.  
 
 ## Acknowledgements
-*(NesDev Wiki)[http://wiki.nesdev.com/w/index.php/Nesdev_Wiki]*
+*[NesDev Wiki](http://wiki.nesdev.com/w/index.php/Nesdev_Wiki)*
 
 Other open-source NES emulators, that were extremely helpful as a reference:
 * https://github.com/fogleman/nes

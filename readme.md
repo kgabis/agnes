@@ -32,10 +32,12 @@ agnes_destroy(agnes);
 Full and working examples can be found in [examples directory](http://github.com/kgabis/agnes/tree/master/examples).
 
 ## Screenshots
-![Super Mario Bros.](screens/smb.png)  
-![Super Mario Bros. 3](screens/smb3.png)  
-![Kirby's Adventure](screens/kirby.png)  
-![Rad Racer II](screens/radracer2.png)  
+<p float="left">
+    <img src="screens/smb.png" alt="Super Mario Bros" width="256"/>
+    <img src="screens/smb3.png" alt="Super Mario Bros 3" width="256"/>
+    <img src="screens/kirby.png" alt="Kirby's Adventure" width="256"/>
+    <img src="screens/radracer2.png" alt="Rad Racer II" width="256"/> 
+</p>
 
 ## Installation
 Run:

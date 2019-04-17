@@ -1,5 +1,5 @@
 /*
-agnes 0.1.0
+agnes 0.1.1
 https://http://github.com/kgabis/agnes
 Copyright (c) 2019 Krzysztof Gabis
 
@@ -2512,8 +2512,11 @@ uint8_t mapper4_read(mapper4_t *mapper, uint16_t addr) {
         unsigned addr_offset = addr & 0x3ff;
         unsigned offset = bank_offset + addr_offset;
         if (mapper->use_chr_ram) {
+            offset = offset & ((8 * 1024) - 1);
             res = mapper->chr_ram[offset];
         } else {
+            unsigned chr_rom_size = (mapper->agnes->gamepack.chr_rom_banks_count * 8 * 1024);
+            offset = offset % chr_rom_size;
             res = mapper->agnes->gamepack.data[mapper->agnes->gamepack.chr_rom_offset + offset];
         }
     } else if (addr >= 0x6000 && addr < 0x8000) {
@@ -2533,7 +2536,7 @@ void mapper4_write(mapper4_t *mapper, uint16_t addr, uint8_t val) {
         int bank = (addr >> 10) & 0x7;
         unsigned bank_offset = mapper->chr_bank_offsets[bank];
         unsigned addr_offset = addr & 0x3ff;
-        unsigned full_offset = bank_offset + addr_offset;
+        unsigned full_offset = (bank_offset + addr_offset) & ((8 * 1024) - 1);
         mapper->chr_ram[full_offset] = val;
     } else if (addr >= 0x6000 && addr < 0x8000) {
          mapper->prg_ram[addr - 0x6000] = val;

@@ -62,7 +62,7 @@ Since I cannot add roms to this project they must be downloaded manually. Please
 
 ## TODO
 * APU emulation.
-* Optimizantions.
+* Optimizations.
 * More mappers.
 * Being able to access CPU and PPU state using API.
 

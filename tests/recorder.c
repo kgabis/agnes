@@ -4,11 +4,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#ifdef WIN32
 #include <SDL.h>
-#else
-#include <SDL2/SDL.h>
-#endif
 
 #include "deps/kgflags.h"
 #include "deps/parson.h"

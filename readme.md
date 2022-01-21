@@ -1,8 +1,8 @@
 ## About
-agnes is a header-only NES emulation library with an easy to use API.
+agnes is a NES emulation library written in C with an easy to use API. It consists of only 2 files (agnes.h and agnes.c).
 
 ## Features
-* Header-only (just copy agnes.h).
+* Only 2 files (agnes.h and agnes.c).
 * Easy to use.
 * MIT licensed.
 * Supports NROM, UxROM, MMC1 and MMC3 mappers.
@@ -46,14 +46,7 @@ Run:
 ```
 git clone https://github.com/kgabis/agnes.git
 ```
-and copy agnes.h to you source code tree.
-
-It behaves like most single header libraries - you have to declare AGNES_IMPLEMENTATION in *one* C or C++ file *before* including it.
-
-```c
-#define AGNES_IMPLEMENTATION
-#include "agnes.h"
-```
+and copy agnes.h and agnes.c to you source code tree.
 
 ## Testing
 Run ```run_tests.sh ROM_DIRECTORY``` (in tests directory) to compile and run tests.
@@ -67,14 +60,14 @@ Since I cannot add roms to this project they must be downloaded manually. Please
 * Being able to access CPU and PPU state using API.
 
 ## Splitting and joining
-agnes.h can be split into separate files by running ```utils/split.py```:
+agnes.c can be split into separate files by running ```utils/split.py```:
 ```bash
-utils/split.py --input agnes.h --output-path src
+utils/split.py --input agnes.c --output-path src
 ```
 
 It can be joined back into a single file with ```utils/join.py```:
 ```bash
-utils/join.py --template utils/agnes.h.templ --path src --output agnes.h --VERSION 0.1.0
+utils/join.py --template utils/agnes.c.templ --path src --output agnes.c
 ```
 
 ## Contributing

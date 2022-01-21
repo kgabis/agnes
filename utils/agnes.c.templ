@@ -1,7 +1,9 @@
 /*
-agnes {{ARG:VERSION}}
+SPDX-License-Identifier: MIT
+
+agnes
 https://http://github.com/kgabis/agnes
-Copyright (c) 2019 Krzysztof Gabis
+Copyright (c) 2022 Krzysztof Gabis
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +24,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-{{FILE:agnes.h}}
+#define AGNES_AMALGAMATED
 
-#ifdef AGNES_IMPLEMENTATION
+#ifdef _MSC_VER
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif /* _CRT_SECURE_NO_WARNINGS */
+#endif /* _MSC_VER */
 
-#ifndef AGNES_IMPLEMENTATION_ONCE
-#define AGNES_IMPLEMENTATION_ONCE
+#include "agnes.h"
 
-#define AGNES_SINGLE_HEADER
+//-----------------------------------------------------------------------------
+// Headers
+//-----------------------------------------------------------------------------
 
 {{FILE:common.h}}
 {{FILE:agnes_types.h}}
@@ -42,6 +49,9 @@ THE SOFTWARE.
 {{FILE:mapper2.h}}
 {{FILE:mapper4.h}}
 
+//-----------------------------------------------------------------------------
+// C files
+//-----------------------------------------------------------------------------
 {{FILE:agnes.c}}
 {{FILE:cpu.c}}
 {{FILE:ppu.c}}
@@ -51,7 +61,3 @@ THE SOFTWARE.
 {{FILE:mapper1.c}}
 {{FILE:mapper2.c}}
 {{FILE:mapper4.c}}
-
-#endif /* AGNES_IMPLEMENTATION_ONCE */
-
-#endif /* AGNES_IMPLEMENTATION */

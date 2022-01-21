@@ -6,7 +6,6 @@
 #ifdef AGNES_XCODE
 #include "agnes.h"
 #else
-#define AGNES_IMPLEMENTATION
 #include "../agnes.h"
 #endif
 

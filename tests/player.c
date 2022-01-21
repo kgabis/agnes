@@ -5,11 +5,7 @@
 #include <time.h>
 
 #ifdef COMPILE_WITH_SDL
-#ifdef WIN32
 #include <SDL.h>
-#else
-#include <SDL2/SDL.h>
-#endif
 #endif
 
 #include "deps/parson.h"

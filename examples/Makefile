@@ -10,11 +10,11 @@ all: simple_sdl2 simple_sdl2_cpp
 
 .PHONY: simple_sdl2
 simple_sdl2: simple_sdl2.c ../agnes.c
-	$(CC) $(CFLAGS) $(SDLCONFIG) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(SDLCONFIG)
 
 .PHONY: simple_sdl2_cpp
 simple_sdl2_cpp: simple_sdl2.c ../agnes.c
-	$(CPPC) $(CPPFLAGS) $(SDLCONFIG) -o $@ $^
+	$(CPPC) $(CPPFLAGS) -o $@ $^ $(SDLCONFIG)
 
 clean:
 	rm -rf simple_sdl2 simple_sdl2_cpp *.dSYM *.o

@@ -12,8 +12,15 @@
 #define WINDOW_WIDTH 512
 #define WINDOW_HEIGHT 480
 
+// Audio configuration
+#define AUDIO_SAMPLE_RATE 44100
+#define AUDIO_BUFFER_SIZE 2048
+
+static agnes_t *g_agnes = NULL;
+
 static void get_input(const Uint8 *state, agnes_input_t *out_input);
 static void* read_file(const char *filename, size_t *out_len);
+static void audio_callback(void *userdata, Uint8 *stream, int len);
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -46,6 +53,25 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Initializing SDL failed.\n");
         return 1;
     }
+
+    // Initialize audio
+    SDL_AudioSpec wanted_spec, obtained_spec;
+    SDL_zero(wanted_spec);
+    wanted_spec.freq = AUDIO_SAMPLE_RATE;
+    wanted_spec.format = AUDIO_F32SYS;
+    wanted_spec.channels = 1;
+    wanted_spec.samples = AUDIO_BUFFER_SIZE;
+    wanted_spec.callback = audio_callback;
+    wanted_spec.userdata = NULL;
+
+    SDL_AudioDeviceID audio_device = SDL_OpenAudioDevice(NULL, 0, &wanted_spec, &obtained_spec, 0);
+    if (audio_device == 0) {
+        fprintf(stderr, "Failed to open audio device: %s\n", SDL_GetError());
+        return 1;
+    }
+
+    g_agnes = agnes;
+    SDL_PauseAudioDevice(audio_device, 0); // Start audio playback
 
     SDL_Window *window = SDL_CreateWindow("agnes", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     SDL_Renderer *sdl_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -84,7 +110,7 @@ int main(int argc, char *argv[]) {
             for (int x = 0; x < AGNES_SCREEN_WIDTH; x++) {
                 agnes_color_t c = agnes_get_screen_pixel(agnes, x, y);
                 int ix = (y * AGNES_SCREEN_WIDTH) + x;
-                uint32_t c_val = c.a << 24 | c.r << 16 | c.g << 8 | c.b;
+                uint32_t c_val = c.a << 24 | c.b << 16 | c.g << 8 | c.r;
                 pixels[ix] = c_val;
             }
         }
@@ -94,6 +120,8 @@ int main(int argc, char *argv[]) {
         SDL_RenderPresent(sdl_renderer);
     }
 
+    SDL_CloseAudioDevice(audio_device);
+    
     agnes_destroy(agnes);
 
     SDL_DestroyTexture(texture);
@@ -145,4 +173,25 @@ static void* read_file(const char *filename, size_t *out_len) {
     fclose(fp);
     *out_len = file_size;
     return file_contents;
+}
+
+static void audio_callback(void *userdata, Uint8 *stream, int len) {
+    (void)userdata;
+    
+    if (g_agnes == NULL) {
+        memset(stream, 0, len);
+        return;
+    }
+    
+    float *float_stream = (float*)stream;
+    int num_samples = len / sizeof(float);
+    
+    for (int i = 0; i < num_samples; i++) {
+        uint32_t available = agnes_get_audio_samples_available(g_agnes);
+        if (available > 0) {
+            float_stream[i] = agnes_get_audio_sample(g_agnes);
+        } else {
+            float_stream[i] = 0.0f;
+        }
+    }
 }

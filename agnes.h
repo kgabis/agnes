@@ -79,6 +79,9 @@ bool agnes_next_frame(agnes_t *agnes);
 
 agnes_color_t agnes_get_screen_pixel(const agnes_t *agnes, int x, int y);
 
+float agnes_get_audio_sample(agnes_t *agnes);
+uint32_t agnes_get_audio_samples_available(agnes_t *agnes);
+
 #ifdef __cplusplus
 }
 #endif

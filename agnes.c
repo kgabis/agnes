@@ -2,7 +2,7 @@
 SPDX-License-Identifier: MIT
 
 agnes
-https://http://github.com/kgabis/agnes
+https://github.com/kgabis/agnes
 Copyright (c) 2022 Krzysztof Gabis
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
